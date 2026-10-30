@@ -21,17 +21,20 @@ Notes on the results:
 
 [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) (Kaggle): about 100k orders placed between 2016 and 2018 on Olist, a Brazilian marketplace platform. It has 9 tables (customers, sellers, products, orders, items, payments, reviews, geolocation and a category translation table). This analysis uses 5 of them: `orders`, `order_items`, `order_reviews`, `products` and `category_translation`. The other 4 are loaded and validated too, so the database keeps the full original dataset.
 
-The CSV files are not included in this repository. Download them from Kaggle (see *How to reproduce*) and check the dataset's license there before redistributing any data.
+The CSV files are not included in this repository. Download them from Kaggle (see *[How to reproduce](#how-to-reproduce)*) and check the dataset's license there before redistributing any data.
 
 ![Data schema](images/schema.png)
 
 *Schema from the Kaggle dataset page. In this project the zip code relationships between customers, sellers and geolocation are not enforced as foreign keys (see *Keys and indexes*).*
+*The diagram labels the customers table as olist_order_customer_dataset, the file is olist_customers_dataset*
 
 ## Repository structure
 
 ```
 .
+├── LICENSE
 ├── README.md
+├── .gitignore
 ├── images/
 │   └── schema.png
 ├── data/                  # CSV files from Kaggle (not committed)
@@ -63,7 +66,7 @@ I split the work into several scripts, each with a single purpose, instead of on
 
 The analysis uses orders with status `delivered` (96,478 orders, 97.02% of the total), purchased between **January 2017 and August 2018**. This scope is defined once, as the view `orders_in_scope` at the top of `05_analysis.sql`, and all four questions use it, so every result refers to the same set of orders (96,211 orders).
 
-The dataset covers September 2016 to October 2018, but the edges are very thin: 329 orders in 2016 (none in November) and 20 orders in September and October 2018. I could not confirm why, so I treated those months as potentially incomplete and left them out. This removes 267 delivered orders from 2016 (0.28% of delivered orders), no delivered order falls in September-October 2018.
+The dataset covers September 2016 to October 2018, but the edges are very thin: 329 orders in 2016 (none in November) and 20 orders in September and October 2018. I could not confirm why, so I treated those months as potentially incomplete and left them out. This removes 267 delivered orders from 2016 (0.28% of delivered orders). No delivered order falls in September-October 2018.
 
 ### Multiple reviews
 
