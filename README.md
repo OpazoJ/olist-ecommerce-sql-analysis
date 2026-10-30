@@ -26,7 +26,7 @@ The CSV files are not included in this repository. Download them from Kaggle (se
 ![Data schema](images/schema.png)
 
 *Schema from the Kaggle dataset page. In this project the zip code relationships between customers, sellers and geolocation are not enforced as foreign keys (see *Keys and indexes*).*
-*The diagram labels the customers table as olist_order_customer_dataset, the file is olist_customers_dataset*
+*The diagram labels the customers table as `olist_order_customer_dataset`. The file is `olist_customers_dataset`.*
 
 ## Repository structure
 
@@ -115,3 +115,7 @@ CTEs (including chained CTEs), views, subqueries, window functions (`LAG`, `RANK
 ```
 
 > `\copy` is a `psql` command, not standard SQL, so the loading step must be run from `psql` and from the project root (the CSV paths are relative). `01_schema.sql` drops and recreates the tables, so the whole process can be repeated safely.
+
+## License
+
+The code is released under the MIT License. The Olist dataset has its own license on Kaggle.
