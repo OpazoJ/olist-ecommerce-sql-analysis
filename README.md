@@ -44,24 +44,6 @@ The CSV files are not included in this repository. Download them from Kaggle (se
     └── 05_analysis.sql
 ```
 
-## How to reproduce
-
-1. Install PostgreSQL and create an empty database.
-2. Download the dataset from Kaggle and place the 9 `.csv` files in the `data/` folder.
-3. From the project root, open `psql`: `psql -d <your_database>`.
-4. Run the scripts in order:
-
-```
-\i sql/01_schema.sql
-\i sql/01b_load_data.sql
-\i sql/02_verification.sql
-\i sql/03_quality.sql
-\i sql/04_constraints.sql
-\i sql/05_analysis.sql
-```
-
-> `\copy` is a `psql` command, not standard SQL, so the loading step must be run from `psql` and from the project root (the CSV paths are relative). `01_schema.sql` drops and recreates the tables, so the whole process can be repeated safely.
-
 ## The scripts
 
 I split the work into several scripts, each with a single purpose, instead of one large `.sql` file.
@@ -112,3 +94,21 @@ I also checked payments with zero value or invalid installments, orders without 
 ## SQL techniques used
 
 CTEs (including chained CTEs), views, subqueries, window functions (`LAG`, `RANK`), multi-table `JOIN`s, conditional aggregation (`CASE` inside `AVG` and `SUM`, `FILTER`), `COALESCE` and `NULLIF`, data quality checks with `GROUP BY ... HAVING`, and constraints and indexes.
+
+## How to reproduce
+
+1. Install PostgreSQL and create an empty database.
+2. Download the dataset from Kaggle and place the 9 `.csv` files in the `data/` folder.
+3. From the project root, open `psql`: `psql -d <your_database>`.
+4. Run the scripts in order:
+
+```
+\i sql/01_schema.sql
+\i sql/01b_load_data.sql
+\i sql/02_verification.sql
+\i sql/03_quality.sql
+\i sql/04_constraints.sql
+\i sql/05_analysis.sql
+```
+
+> `\copy` is a `psql` command, not standard SQL, so the loading step must be run from `psql` and from the project root (the CSV paths are relative). `01_schema.sql` drops and recreates the tables, so the whole process can be repeated safely.
