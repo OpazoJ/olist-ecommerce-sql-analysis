@@ -1,8 +1,8 @@
 /*
-=========================================
+============================================
     02_verification.sql
     Verify that every table loaded the same number of rows as its CSV file
-=========================================
+============================================
 
 Expected counts are the number of records in each CSV (header excluded).
 Note: the reviews CSV has more physical lines (104,719) than records
